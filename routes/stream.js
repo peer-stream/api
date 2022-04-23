@@ -86,6 +86,6 @@ router.get('/:stream_id', async function(req, res) {
     }
 });
 
-router.use('/:stream_id/comments', commentRouter);
+router.use('/', commentRouter);
 
 module.exports = router;
