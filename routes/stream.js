@@ -3,6 +3,7 @@ const { PaginationParameters } = require('mongoose-paginate-v2');
 const jwtVerify = require('../utils/jwt_middleware');
 const LPApiClient = require('../utils/livepeer_api_client');
 const Stream = require('../models/stream');
+const commentRouter = require('./comment');
 
 const router = express.Router();
 
@@ -68,9 +69,9 @@ router.post('/', jwtVerify, async function(req, res) {
     }
 });
 
-router.get('/:id', async function(req, res) {
+router.get('/:stream_id', async function(req, res) {
     try {
-        const dbStream = await Stream.findById(req.params.id).select('-livepeer_stream_key');
+        const dbStream = await Stream.findById(req.params.stream_id).select('-livepeer_stream_key');
         const lpStream = await LPApiClient.get(`/stream/${dbStream.livepeer_id}`);
 
         const stream = Object.assign(dbStream.toJSON(), {
@@ -84,5 +85,7 @@ router.get('/:id', async function(req, res) {
         res.status(500).json({ message: err.message });
     }
 });
+
+router.use('/:stream_id/comments', commentRouter);
 
 module.exports = router;
