@@ -89,7 +89,7 @@ router.post('/token', async function(req, res, next) {
       })
     );
 
-    res.status(201).json({ token: jwtToken });
+    res.status(201).json({ token: jwtToken, expires_at: expires });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
