@@ -9,7 +9,7 @@ router.get('/', async function(req, res) {
     res.json(comments.docs);
 });
 
-router.post('/', jwtVerify, function(req, res) {
+router.post('/', jwtVerify, async function(req, res) {
     const { body } = req.body;
 
     if (!body || body.length < 3) {
