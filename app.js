@@ -6,6 +6,7 @@ const dotenv = require('dotenv').config();
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 
+const connectDB = require('./utils/mongodb');
 const app = express();
 
 app.use(logger('dev'));
