@@ -43,6 +43,9 @@ const streamSchema = new mongoose.Schema(
         delete ret.__v
 
         ret.id = doc._id
+        ret.rtmp_ingest_url = 'rtmp://rtmp.livepeer.com/live'
+        ret.srt_ingest_url = `srt://rtmp.livepeer.com:2935?streamid=${doc.livepeer_stream_key}`
+        ret.playback_url = `https://livepeercdn.com/hls/${doc.livepeer_playback_id}/index.m3u8`
       }
     }
   },
