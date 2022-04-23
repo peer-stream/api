@@ -16,7 +16,7 @@ router.get('/me', jwtVerify, async (req, res) => {
 router.post('/nonce', async function(req, res, next) {
   const { address } = req.body;
 
-  if (!address || address.length < 32) {
+  if (!address || address.length < 42) {
     return res.status(400).json({ message: 'a valid wallet address is required' });
   }
 
@@ -43,7 +43,7 @@ router.post('/nonce', async function(req, res, next) {
 router.post('/token', async function(req, res, next) {
   const { address, signature } = req.body;
 
-  if (!address || address.length < 32 || !signature || signature.length < 32) {
+  if (!address || address.length < 42 || !signature || signature.length < 32) {
     return res.status(400).json({ message: 'a valid wallet address and signature are required' });
   }
 
