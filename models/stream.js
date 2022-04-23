@@ -8,10 +8,30 @@ const streamSchema = new mongoose.Schema(
       type: String,
       default: () => nanoid()
     },
+    owner_id: {
+      type: String,
+      required: true
+    },
     title: {
       type: String,
       index: true,
       default: 'Untitled'
+    },
+    description: {
+      type: String
+    },
+    livepeer_id: {
+      type: String,
+      required: true,
+      index: true
+    },
+    livepeer_stream_key: {
+      type: String,
+      required: true
+    },
+    livepeer_playback_id: {
+      type: String,
+      required: true
     }
   },
   {
