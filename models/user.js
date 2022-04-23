@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema(
       index: true,
       lowercase: true,
       validate: (address) => {
-        return /^0x([A-Fa-f0-9]{64})$/.test(address);
+        return /^0x([A-Fa-f0-9]{40})$/.test(address);
       }
     },
     auth_nonce: {
